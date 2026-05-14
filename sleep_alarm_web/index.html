@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0D1B2A" />
+  <title>SleepWell — Будильник</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════ ALARM RINGING OVERLAY ══════════════ -->
+  <div id="alarm-overlay" class="overlay hidden">
+    <div class="overlay-card">
+      <div class="overlay-icon">🌙</div>
+      <div id="overlay-time" class="overlay-time">00:00</div>
+      <div id="overlay-label" class="overlay-label">Будильник</div>
+      <button id="btn-dismiss" class="btn-dismiss">Выключить</button>
+      <button id="btn-snooze" class="btn-snooze">Отложить на 10 мин</button>
+    </div>
+  </div>
+
+  <!-- ══════════════ ADD / EDIT ALARM MODAL ══════════════ -->
+  <div id="modal-alarm" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <h2 id="modal-title" class="modal-heading">Новый будильник</h2>
+
+      <input type="time" id="alarm-time-input" class="time-input" />
+
+      <label class="field-label">НАЗВАНИЕ</label>
+      <input type="text" id="alarm-label-input" class="text-input"
+             placeholder="например: Работа" />
+
+      <label class="field-label">ПОВТОР</label>
+      <div class="days-row" id="days-row">
+        <button class="day-btn" data-day="0">Пн</button>
+        <button class="day-btn" data-day="1">Вт</button>
+        <button class="day-btn" data-day="2">Ср</button>
+        <button class="day-btn" data-day="3">Чт</button>
+        <button class="day-btn" data-day="4">Пт</button>
+        <button class="day-btn" data-day="5">Сб</button>
+        <button class="day-btn" data-day="6">Вс</button>
+      </div>
+
+      <label class="field-label">УЛУЧШЕНИЕ СНА</label>
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-title">🧠 Умный будильник</div>
+          <div class="toggle-sub">Будит в фазе лёгкого сна (±<span id="window-val">30</span> мин)</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="smart-toggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div id="smart-window-row" class="slider-row hidden">
+        <span class="toggle-sub">Окно:</span>
+        <input type="range" id="smart-window" min="10" max="30" step="10" value="30" />
+        <span id="window-label" class="accent-text">30 мин</span>
+      </div>
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-title">🌅 Плавный будильник</div>
+          <div class="toggle-sub">Громкость нарастает 2 минуты</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="gradual-toggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="modal-actions">
+        <button id="btn-modal-cancel" class="btn-secondary">Отмена</button>
+        <button id="btn-modal-save" class="btn-primary">Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ SLEEP QUALITY MODAL ══════════════ -->
+  <div id="modal-quality" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card" style="max-width:320px;text-align:center">
+      <h2 class="modal-heading">Как вы поспали?</h2>
+      <div id="quality-emoji" style="font-size:48px;margin:8px 0">😐</div>
+      <div id="quality-label" style="color:#90A4AE;margin-bottom:16px">Нормально</div>
+      <div class="stars-row" id="stars-row">
+        <span class="star" data-v="1">⭐</span>
+        <span class="star" data-v="2">⭐</span>
+        <span class="star" data-v="3">⭐</span>
+        <span class="star" data-v="4">⭐</span>
+        <span class="star" data-v="5">⭐</span>
+      </div>
+      <button id="btn-quality-save" class="btn-primary" style="margin-top:20px;width:100%">Сохранить</button>
+    </div>
+  </div>
+
+  <!-- ══════════════ MAIN APP ══════════════ -->
+  <div class="app-shell">
+
+    <!-- ALARMS TAB -->
+    <section id="tab-alarms" class="tab-content active">
+      <div class="page-header">
+        <h1 class="page-title">Будильники</h1>
+        <p id="next-alarm-hint" class="page-sub">Нет активных будильников</p>
+      </div>
+      <div id="alarms-list"></div>
+      <div class="empty-state hidden" id="alarms-empty">
+        <span style="font-size:64px">⏰</span>
+        <p>Нет будильников</p>
+        <button class="btn-text" id="btn-add-from-empty">+ Добавить будильник</button>
+      </div>
+      <button class="fab" id="btn-add-alarm">+</button>
+    </section>
+
+    <!-- SOUNDS TAB -->
+    <section id="tab-sounds" class="tab-content">
+      <div class="page-header">
+        <h1 class="page-title">Звуки сна</h1>
+      </div>
+      <div class="sounds-grid" id="sounds-grid">
+        <div class="sound-card" data-sound="white">〰️<span>Белый шум</span></div>
+        <div class="sound-card" data-sound="brown">🌊 <span>Тёмный шум</span></div>
+        <div class="sound-card" data-sound="rain">🌧️<span>Дождь</span></div>
+        <div class="sound-card" data-sound="forest">🌲<span>Лес</span></div>
+        <div class="sound-card" data-sound="ocean">🌊<span>Океан</span></div>
+        <div class="sound-card" data-sound="fan">💨<span>Вентилятор</span></div>
+      </div>
+      <div id="volume-row" class="volume-row hidden">
+        <span style="color:#546E7A;font-size:18px">🔈</span>
+        <input type="range" id="sound-volume" min="0" max="100" value="70" class="vol-slider"/>
+        <span style="color:#546E7A;font-size:18px">🔊</span>
+      </div>
+      <div class="timer-card" id="timer-card">
+        <div class="toggle-row" style="margin-bottom:12px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span>⏱️</span>
+            <span style="color:#fff;font-size:15px">Таймер выключения</span>
+          </div>
+          <span id="timer-status" style="color:#546E7A;font-size:13px">Не выключать</span>
+        </div>
+        <div class="timer-options">
+          <button class="timer-opt active" data-min="0">∞</button>
+          <button class="timer-opt" data-min="15">15 м</button>
+          <button class="timer-opt" data-min="30">30 м</button>
+          <button class="timer-opt" data-min="60">60 м</button>
+          <button class="timer-opt" data-min="90">90 м</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS TAB -->
+    <section id="tab-stats" class="tab-content">
+      <div class="page-header">
+        <h1 class="page-title">Статистика сна</h1>
+      </div>
+      <div id="stats-empty" class="empty-state">
+        <span style="font-size:64px">🛌</span>
+        <p>Нет данных о сне</p>
+        <p style="font-size:13px;color:#37474F">Включите звуки сна<br>и оцените качество утром</p>
+      </div>
+      <div id="stats-content" class="hidden">
+        <div class="stats-row" id="stats-row"></div>
+        <div class="chart-card">
+          <div class="chart-title">Длительность сна (ч)</div>
+          <canvas id="chart-duration" height="160"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Качество сна (1–5)</div>
+          <canvas id="chart-quality" height="160"></canvas>
+        </div>
+        <div id="records-list"></div>
+      </div>
+    </section>
+
+  </div><!-- /app-shell -->
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-tab="alarms">
+      <span>⏰</span><span>Будильники</span>
+    </button>
+    <button class="nav-btn" data-tab="sounds">
+      <span>🎵</span><span>Звуки сна</span>
+    </button>
+    <button class="nav-btn" data-tab="stats">
+      <span>📊</span><span>Статистика</span>
+    </button>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <script src="app.js" type="module"></script>
+</body>
+</html>
