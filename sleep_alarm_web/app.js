@@ -224,8 +224,11 @@ function openAlarmModal(alarm = null) {
   editingId    = alarm?.id ?? null;
   selectedDays = alarm?.days ? [...alarm.days] : Array(7).fill(false);
 
+  const t = alarm?.time ?? currentTimeRounded();
+  const [tH, tM] = t.split(':');
   document.getElementById('modal-title').textContent     = alarm ? 'Изменить будильник' : 'Новый будильник';
-  document.getElementById('alarm-time-input').value      = alarm?.time ?? currentTimeRounded();
+  document.getElementById('alarm-hour').value            = String(+tH);
+  document.getElementById('alarm-minute').value          = String(+tM);
   document.getElementById('alarm-label-input').value     = alarm?.label ?? '';
   document.getElementById('smart-toggle').checked        = alarm?.smart ?? false;
   document.getElementById('gradual-toggle').checked      = alarm?.gradual ?? false;
@@ -241,13 +244,14 @@ function closeAlarmModal() {
 }
 
 function saveAlarm() {
-  const time   = document.getElementById('alarm-time-input').value;
+  const h      = +document.getElementById('alarm-hour').value;
+  const m      = +document.getElementById('alarm-minute').value;
+  if (isNaN(h) || isNaN(m) || h < 0 || h > 23 || m < 0 || m > 59) return;
+  const time   = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
   const label  = document.getElementById('alarm-label-input').value.trim();
   const smart  = document.getElementById('smart-toggle').checked;
   const gradual= document.getElementById('gradual-toggle').checked;
   const win    = +document.getElementById('smart-window').value;
-
-  if (!time) return;
 
   if (editingId !== null) {
     alarms = alarms.map(a =>

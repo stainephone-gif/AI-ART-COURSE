@@ -26,7 +26,11 @@
     <div class="modal-card">
       <h2 id="modal-title" class="modal-heading">Новый будильник</h2>
 
-      <input type="time" id="alarm-time-input" class="time-input" />
+      <div class="time-picker">
+        <input type="number" id="alarm-hour"   class="time-part" min="0" max="23" placeholder="07" />
+        <span class="time-colon">:</span>
+        <input type="number" id="alarm-minute" class="time-part" min="0" max="59" placeholder="00" />
+      </div>
 
       <label class="field-label">НАЗВАНИЕ</label>
       <input type="text" id="alarm-label-input" class="text-input"

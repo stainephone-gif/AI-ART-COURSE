@@ -192,22 +192,39 @@ html, body {
 
 .modal-heading { font-size: 20px; font-weight: 600; text-align: center; }
 
-/* ── Time input ──────────────────────────────────── */
-.time-input {
-  width: 100%;
+/* ── Custom time picker ──────────────────────────── */
+.time-picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--bg);
-  border: none;
   border-radius: 14px;
-  padding: 16px;
+  padding: 12px 16px;
+  gap: 0;
+}
+.time-part {
+  width: 90px;
+  background: transparent;
+  border: none;
   color: var(--text);
-  font-size: 48px;
+  font-size: 56px;
   font-weight: 200;
-  letter-spacing: 4px;
+  letter-spacing: 2px;
   text-align: center;
   outline: none;
-  cursor: pointer;
+  -moz-appearance: textfield;
 }
-.time-input::-webkit-calendar-picker-indicator { filter: invert(1); }
+.time-part::-webkit-inner-spin-button,
+.time-part::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.time-part:focus { color: var(--accent); }
+.time-colon {
+  font-size: 56px;
+  font-weight: 200;
+  color: var(--text);
+  line-height: 1;
+  padding: 0 4px;
+  user-select: none;
+}
 
 /* ── Text input ──────────────────────────────────── */
 .text-input {
