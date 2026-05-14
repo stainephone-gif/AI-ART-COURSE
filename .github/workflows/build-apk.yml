@@ -1,0 +1,54 @@
+name: Build Android APK
+
+on:
+  push:
+    branches:
+      - claude/android-alarm-sleep-app-49Ohb
+    paths:
+      - 'sleep_alarm/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.41.9'
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        working-directory: sleep_alarm
+        run: flutter pub get
+
+      - name: Run analyzer
+        working-directory: sleep_alarm
+        run: flutter analyze
+
+      - name: Build release APK
+        working-directory: sleep_alarm
+        run: flutter build apk --release
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SleepWell-release
+          path: sleep_alarm/build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 30
+
+      - name: Show APK info
+        run: |
+          ls -lh sleep_alarm/build/app/outputs/flutter-apk/
+          echo "✅ APK built successfully!"
