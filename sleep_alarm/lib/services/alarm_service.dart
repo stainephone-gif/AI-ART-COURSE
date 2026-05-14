@@ -11,22 +11,29 @@ class AlarmService {
 
     final alarmTime = model.nextAlarmTime();
 
+    final volumeSettings = model.gradualAlarm
+        ? VolumeSettings.fade(
+            volume: 1.0,
+            fadeDuration: const Duration(seconds: 120),
+          )
+        : const VolumeSettings.fixed(volume: 1.0);
+
     final settings = AlarmSettings(
       id: model.id,
       dateTime: alarmTime,
-      assetAudioPath: 'assets/marimba.mp3',
-      loopAudio: true,
-      vibrate: true,
-      volume: model.gradualAlarm ? 0.1 : 1.0,
-      fadeDuration: model.gradualAlarm ? 120.0 : 0.0,
-      warningNotificationOnKill: true,
-      androidFullScreenIntent: true,
+      volumeSettings: volumeSettings,
       notificationSettings: NotificationSettings(
         title: model.label.isEmpty ? 'Будильник' : model.label,
         body: model.timeString,
         stopButton: 'Выключить',
         icon: 'notification_icon',
       ),
+      // Built-in asset from the alarm package
+      assetAudioPath: 'packages/alarm/assets/marimba.mp3',
+      loopAudio: true,
+      vibrate: true,
+      warningNotificationOnKill: true,
+      androidFullScreenIntent: true,
     );
 
     await Alarm.set(alarmSettings: settings);
@@ -40,5 +47,7 @@ class AlarmService {
     await Alarm.stop(id);
   }
 
-  static Stream<AlarmSettings?> get ringStream => Alarm.ringStream.stream;
+  // alarm 5.x: use Alarm.ringing stream (AlarmSet) and map to first ringing alarm
+  static Stream<AlarmSettings?> get ringStream =>
+      Alarm.ringing.map((set) => set.alarms.firstOrNull);
 }

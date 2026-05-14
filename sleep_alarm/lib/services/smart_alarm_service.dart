@@ -12,7 +12,7 @@ class SmartAlarmService {
   static bool _isMonitoring = false;
   static bool get isMonitoring => _isMonitoring;
 
-  static void startMonitoring(VoidCallback onMovementDetected) {
+  static void startMonitoring(void Function() onMovementDetected) {
     if (_isMonitoring) return;
     _isMonitoring = true;
     _movementBuffer.clear();
@@ -83,4 +83,3 @@ extension SleepPhaseExt on SleepPhase {
   }
 }
 
-typedef VoidCallback = void Function();

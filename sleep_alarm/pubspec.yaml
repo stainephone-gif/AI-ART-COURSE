@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  alarm: ^4.0.2
+  alarm: ^5.2.1
   audioplayers: ^6.0.0
   sensors_plus: ^6.0.0
   shared_preferences: ^2.3.2
