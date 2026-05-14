@@ -1,15 +1,20 @@
-name: Build Android APK
+name: Build Android APK + Deploy Web
 
 on:
   push:
     branches:
       - claude/android-alarm-sleep-app-49Ohb
-    paths:
-      - 'sleep_alarm/**'
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  build:
+  # ── Job 1: Build Android APK ──────────────────────────
+  build-apk:
+    name: Build Android APK
     runs-on: ubuntu-latest
 
     steps:
@@ -44,7 +49,7 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: SleepWell-release
+          name: SleepWell-release-apk
           path: sleep_alarm/build/app/outputs/flutter-apk/app-release.apk
           retention-days: 30
 
@@ -52,3 +57,27 @@ jobs:
         run: |
           ls -lh sleep_alarm/build/app/outputs/flutter-apk/
           echo "✅ APK built successfully!"
+
+  # ── Job 2: Deploy Web App to GitHub Pages ─────────────
+  deploy-web:
+    name: Deploy Web App
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload web app
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: sleep_alarm_web
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
