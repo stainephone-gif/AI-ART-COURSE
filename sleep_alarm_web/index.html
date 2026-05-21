@@ -104,10 +104,14 @@
 
     <!-- ALARMS TAB -->
     <section id="tab-alarms" class="tab-content active">
-      <div class="page-header">
-        <h1 class="page-title">Будильники</h1>
-        <p id="next-alarm-hint" class="page-sub">Нет активных будильников</p>
+      <div class="clock-hero">
+        <div class="clock-glow"></div>
+        <div id="live-time" class="clock-time">--:--</div>
+        <div id="live-seconds" class="clock-seconds">00</div>
+        <div id="live-date" class="clock-date">—</div>
+        <div id="next-alarm-hint" class="clock-next">Нет активных будильников</div>
       </div>
+      <div class="section-title">Мои будильники</div>
       <div id="alarms-list"></div>
       <div class="empty-state hidden" id="alarms-empty">
         <span style="font-size:64px">⏰</span>

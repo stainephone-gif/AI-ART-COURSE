@@ -33,6 +33,84 @@ html, body {
 .page-title  { font-size: 28px; font-weight: 700; }
 .page-sub    { font-size: 14px; color: var(--muted); margin-top: 4px; }
 
+/* ── Clock hero ──────────────────────────────────── */
+.clock-hero {
+  position: relative;
+  margin: 24px 0 28px;
+  padding: 32px 16px 24px;
+  border-radius: 24px;
+  background: linear-gradient(160deg, #1A2744 0%, #0F1B33 60%, #0D1B2A 100%);
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,.35);
+  border: 1px solid rgba(123,140,222,.12);
+}
+.clock-glow {
+  position: absolute;
+  top: -40%; left: 50%;
+  transform: translateX(-50%);
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(123,140,222,.35) 0%, transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: .6; transform: translateX(-50%) scale(1); }
+  50%      { opacity: 1;  transform: translateX(-50%) scale(1.1); }
+}
+.clock-time {
+  position: relative;
+  font-size: 76px;
+  font-weight: 100;
+  letter-spacing: 4px;
+  color: #fff;
+  line-height: 1;
+  text-shadow: 0 0 32px rgba(123,140,222,.6);
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+.clock-seconds {
+  position: relative;
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--accent);
+  letter-spacing: 2px;
+  vertical-align: top;
+  margin-top: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.clock-date {
+  position: relative;
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--sub);
+  letter-spacing: 1px;
+  text-transform: capitalize;
+}
+.clock-next {
+  position: relative;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--accent);
+  padding: 8px 16px;
+  display: inline-block;
+  background: rgba(123,140,222,.1);
+  border-radius: 20px;
+  border: 1px solid rgba(123,140,222,.2);
+}
+
+.section-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin: 8px 4px 12px;
+}
+
 /* ── Bottom nav ──────────────────────────────────── */
 .bottom-nav {
   position: fixed;
