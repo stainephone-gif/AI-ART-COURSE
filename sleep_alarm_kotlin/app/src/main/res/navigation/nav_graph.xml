@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/alarmsFragment">
+
+    <fragment
+        android:id="@+id/alarmsFragment"
+        android:name="com.sleepwell.app.ui.alarms.AlarmsFragment"
+        android:label="@string/tab_alarms" />
+    <fragment
+        android:id="@+id/soundsFragment"
+        android:name="com.sleepwell.app.ui.sounds.SoundsFragment"
+        android:label="@string/tab_sounds" />
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="com.sleepwell.app.ui.stats.StatsFragment"
+        android:label="@string/tab_stats" />
+</navigation>

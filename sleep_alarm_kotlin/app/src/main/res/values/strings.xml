@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SleepWell</string>
+    <string name="tab_alarms">Будильники</string>
+    <string name="tab_sounds">Звуки сна</string>
+    <string name="tab_stats">Статистика</string>
+</resources>
