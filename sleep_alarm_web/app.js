@@ -707,6 +707,28 @@ function requestNotifPermission() {
 }
 
 // ══════════════════════════════════════════════════════
+//  LIVE CLOCK
+// ══════════════════════════════════════════════════════
+function updateLiveClock() {
+  const now = new Date();
+  const hh  = String(now.getHours()).padStart(2, '0');
+  const mm  = String(now.getMinutes()).padStart(2, '0');
+  const ss  = String(now.getSeconds()).padStart(2, '0');
+  const timeEl = document.getElementById('live-time');
+  const secEl  = document.getElementById('live-seconds');
+  const dateEl = document.getElementById('live-date');
+  if (timeEl) timeEl.textContent = `${hh}:${mm}`;
+  if (secEl)  secEl.textContent  = ss;
+  if (dateEl) {
+    dateEl.textContent = now.toLocaleDateString('ru', {
+      weekday: 'long', day: 'numeric', month: 'long',
+    });
+  }
+}
+updateLiveClock();
+setInterval(updateLiveClock, 1000);
+
+// ══════════════════════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════════════════════
 requestNotifPermission();
