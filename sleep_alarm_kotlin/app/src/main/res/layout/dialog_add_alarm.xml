@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@color/surface">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Будильник"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="sans-serif-medium"/>
+
+    <!-- Time picker row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/field_bg"
+        android:layout_marginBottom="16dp"
+        android:padding="8dp">
+
+        <NumberPicker
+            android:id="@+id/npHour"
+            android:layout_width="80dp"
+            android:layout_height="120dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:textSize="36sp"
+            android:textColor="@color/white"
+            android:paddingHorizontal="8dp"/>
+
+        <NumberPicker
+            android:id="@+id/npMinute"
+            android:layout_width="80dp"
+            android:layout_height="120dp"/>
+    </LinearLayout>
+
+    <!-- Label -->
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="НАЗВАНИЕ" android:textSize="10sp"
+              android:textColor="@color/muted" android:letterSpacing="0.15"
+              android:layout_marginBottom="4dp"/>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/field_bg"
+        android:hint="Например: Работа"
+        android:textColor="@color/text"
+        android:textColorHint="@color/muted"
+        android:padding="14dp"
+        android:inputType="textCapSentences"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Days -->
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="ПОВТОР" android:textSize="10sp"
+              android:textColor="@color/muted" android:letterSpacing="0.15"
+              android:layout_marginBottom="8dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+        <Button android:id="@+id/btnMon" android:layout_width="0dp"
+            android:layout_height="40dp" android:layout_weight="1"
+            android:text="Пн" style="@style/DayBtn" android:layout_marginEnd="4dp"/>
+        <Button android:id="@+id/btnTue" android:layout_width="0dp"
+            android:layout_height="40dp" android:layout_weight="1"
+            android:text="Вт" style="@style/DayBtn" android:layout_marginEnd="4dp"/>
+        <Button android:id="@+id/btnWed" android:layout_width="0dp"
+            android:layout_height="40dp" android:layout_weight="1"
+            android:text="Ср" style="@style/DayBtn" android:layout_marginEnd="4dp"/>
+        <Button android:id="@+id/btnThu" android:layout_width="0dp"
+            android:layout_height="40dp" android:layout_weight="1"
+            android:text="Чт" style="@style/DayBtn" android:layout_marginEnd="4dp"/>
+        <Button android:id="@+id/btnFri" android:layout_width="0dp"
+            android:layout_height="40dp" android:layout_weight="1"
+            android:text="Пт" style="@style/DayBtn" android:layout_marginEnd="4dp"/>
+        <Button android:id="@+id/btnSat" android:layout_width="0dp"
+            android:layout_height="40dp" android:layout_weight="1"
+            android:text="Сб" style="@style/DayBtn" android:layout_marginEnd="4dp"/>
+        <Button android:id="@+id/btnSun" android:layout_width="0dp"
+            android:layout_height="40dp" android:layout_weight="1"
+            android:text="Вс" style="@style/DayBtn"/>
+    </LinearLayout>
+
+    <!-- Smart alarm -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal" android:gravity="center_vertical"
+                  android:background="@drawable/field_bg" android:padding="14dp"
+                  android:layout_marginBottom="8dp">
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                      android:layout_weight="1" android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="🧠 Умный будильник" android:textColor="@color/text" android:textSize="15sp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="Будит в фазе лёгкого сна" android:textColor="@color/sub" android:textSize="12sp"/>
+        </LinearLayout>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/swSmart" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:trackTint="@color/accent"
+            xmlns:app="http://schemas.android.com/apk/res-auto"/>
+    </LinearLayout>
+
+    <!-- Smart window row -->
+    <LinearLayout android:id="@+id/rowSmartWindow"
+                  android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal" android:gravity="center_vertical"
+                  android:layout_marginBottom="8dp" android:visibility="gone">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="Окно:" android:textColor="@color/sub" android:textSize="13sp"
+                  android:layout_marginEnd="8dp"/>
+        <SeekBar android:id="@+id/sbWindow" android:layout_width="0dp"
+                 android:layout_height="wrap_content" android:layout_weight="1"
+                 android:max="2" android:progress="2"/>
+        <TextView android:id="@+id/tvWindowVal"
+                  android:layout_width="60dp" android:layout_height="wrap_content"
+                  android:text="30 мин" android:textColor="@color/accent"
+                  android:textSize="13sp" android:gravity="end"/>
+    </LinearLayout>
+
+    <!-- Gradual alarm -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal" android:gravity="center_vertical"
+                  android:background="@drawable/field_bg" android:padding="14dp"
+                  android:layout_marginBottom="20dp">
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                      android:layout_weight="1" android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="🌅 Плавный будильник" android:textColor="@color/text" android:textSize="15sp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="Громкость нарастает 2 минуты" android:textColor="@color/sub" android:textSize="12sp"/>
+        </LinearLayout>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/swGradual" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:trackTint="@color/accent"
+            xmlns:app="http://schemas.android.com/apk/res-auto"/>
+    </LinearLayout>
+
+    <!-- Actions -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal" android:layout_marginBottom="16dp">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp" android:layout_height="48dp"
+            android:layout_weight="1" android:text="Отмена"
+            android:layout_marginEnd="8dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="@color/dimmed" android:textColor="@color/sub"
+            xmlns:app="http://schemas.android.com/apk/res-auto"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave"
+            android:layout_width="0dp" android:layout_height="48dp"
+            android:layout_weight="1" android:text="Сохранить"
+            app:backgroundTint="@color/accent"
+            xmlns:app="http://schemas.android.com/apk/res-auto"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SleepWell" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorPrimaryVariant">@color/surface</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text</item>
+        <item name="android:windowBackground">@color/bg</item>
+        <item name="android:statusBarColor">@color/bg</item>
+        <item name="android:navigationBarColor">@color/surface</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="bottomNavigationStyle">@style/BottomNav</item>
+    </style>
+
+    <style name="BottomNav" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:background">@color/surface</item>
+    </style>
+
+    <style name="DayBtn" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:backgroundTint">@color/day_btn_bg</item>
+        <item name="android:textColor">@color/day_btn_text</item>
+        <item name="strokeColor">@android:color/transparent</item>
+        <item name="cornerRadius">20dp</item>
+    </style>
+</resources>

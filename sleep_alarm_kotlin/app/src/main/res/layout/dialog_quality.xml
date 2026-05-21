@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="28dp"
+    android:background="@color/surface">
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="Как вы поспали?" android:textSize="20sp"
+              android:textColor="@color/white" android:fontFamily="sans-serif-medium"
+              android:layout_marginBottom="16dp"/>
+
+    <TextView android:id="@+id/tvQualityEmoji"
+              android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="😐" android:textSize="48sp" android:layout_marginBottom="8dp"/>
+
+    <TextView android:id="@+id/tvQualityLabel"
+              android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="Нормально" android:textSize="15sp"
+              android:textColor="@color/sub" android:layout_marginBottom="20dp"/>
+
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:orientation="horizontal" android:layout_marginBottom="28dp">
+        <TextView android:id="@+id/star1" android:layout_width="40dp"
+                  android:layout_height="40dp" android:text="⭐" android:textSize="28sp"
+                  android:gravity="center" android:alpha="0.3" android:clickable="true"
+                  android:focusable="true"/>
+        <TextView android:id="@+id/star2" android:layout_width="40dp"
+                  android:layout_height="40dp" android:text="⭐" android:textSize="28sp"
+                  android:gravity="center" android:alpha="0.3" android:clickable="true"
+                  android:focusable="true"/>
+        <TextView android:id="@+id/star3" android:layout_width="40dp"
+                  android:layout_height="40dp" android:text="⭐" android:textSize="28sp"
+                  android:gravity="center" android:alpha="1.0" android:clickable="true"
+                  android:focusable="true"/>
+        <TextView android:id="@+id/star4" android:layout_width="40dp"
+                  android:layout_height="40dp" android:text="⭐" android:textSize="28sp"
+                  android:gravity="center" android:alpha="0.3" android:clickable="true"
+                  android:focusable="true"/>
+        <TextView android:id="@+id/star5" android:layout_width="40dp"
+                  android:layout_height="40dp" android:text="⭐" android:textSize="28sp"
+                  android:gravity="center" android:alpha="0.3" android:clickable="true"
+                  android:focusable="true"/>
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnQualitySave"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Сохранить"
+        app:backgroundTint="@color/accent"
+        android:layout_marginBottom="8dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"/>
+
+</LinearLayout>
