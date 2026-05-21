@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bg">#0D1B2A</color>
-    <color name="surface">#1A2744</color>
-    <color name="accent">#7B8CDE</color>
-    <color name="muted">#546E7A</color>
-    <color name="dimmed">#37474F</color>
-    <color name="text">#ECEFF1</color>
-    <color name="sub">#90A4AE</color>
+    <!-- monopo saigon palette -->
+    <color name="midnight">#000000</color>
+    <color name="frost_white">#FFFFFF</color>
+    <color name="deep_shadow">#181818</color>
+    <color name="whisper_gray">#6D6D6D</color>
+    <color name="misty_gray">#636363</color>
+
+    <!-- Gradient stops -->
+    <color name="grad_start">#A0E0AB</color>
+    <color name="grad_mid">#FFAC2E</color>
+    <color name="grad_end">#A52D25</color>
+
+    <!-- Frosted glass -->
+    <color name="frosted_bg">#14FFFFFF</color>
+    <color name="frosted_border">#33FFFFFF</color>
+    <color name="frosted_dark">#CC000000</color>
+
+    <!-- Aliases used in layouts -->
+    <color name="bg">#000000</color>
+    <color name="surface">#181818</color>
+    <color name="accent">#FFAC2E</color>
+    <color name="muted">#6D6D6D</color>
+    <color name="dimmed">#333333</color>
+    <color name="text">#FFFFFF</color>
+    <color name="sub">#6D6D6D</color>
     <color name="white">#FFFFFF</color>
-    <color name="nav_item">#546E7A</color>
-    <color name="nav_item_active">#7B8CDE</color>
+    <color name="nav_item">#6D6D6D</color>
+    <color name="nav_item_active">#FFFFFF</color>
 </resources>

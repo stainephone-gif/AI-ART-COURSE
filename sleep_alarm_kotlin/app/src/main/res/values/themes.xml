@@ -1,22 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.SleepWell" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/accent</item>
-        <item name="colorPrimaryVariant">@color/surface</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSurface">@color/surface</item>
-        <item name="colorOnSurface">@color/text</item>
-        <item name="android:windowBackground">@color/bg</item>
-        <item name="android:statusBarColor">@color/bg</item>
-        <item name="android:navigationBarColor">@color/surface</item>
-        <item name="android:textColor">@color/text</item>
+        <item name="colorPrimary">@color/frost_white</item>
+        <item name="colorPrimaryVariant">@color/deep_shadow</item>
+        <item name="colorOnPrimary">@color/midnight</item>
+        <item name="colorSurface">@color/deep_shadow</item>
+        <item name="colorOnSurface">@color/frost_white</item>
+        <item name="android:windowBackground">@color/midnight</item>
+        <item name="android:statusBarColor">@color/midnight</item>
+        <item name="android:navigationBarColor">@color/midnight</item>
+        <item name="android:textColor">@color/frost_white</item>
         <item name="bottomNavigationStyle">@style/BottomNav</item>
+        <item name="materialButtonStyle">@style/PillButton</item>
     </style>
 
     <style name="BottomNav" parent="Widget.MaterialComponents.BottomNavigationView">
-        <item name="android:background">@color/surface</item>
+        <item name="android:background">@color/midnight</item>
+        <item name="itemRippleColor">@color/frosted_border</item>
     </style>
 
+    <!-- Pill-shaped primary button (border-radius: 75dp) -->
+    <style name="PillButton" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">75dp</item>
+        <item name="android:paddingStart">32dp</item>
+        <item name="android:paddingEnd">32dp</item>
+        <item name="android:textColor">@color/midnight</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="backgroundTint">@color/frost_white</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <!-- Ghost pill button (transparent + border) -->
+    <style name="PillButtonGhost" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="cornerRadius">75dp</item>
+        <item name="android:paddingStart">32dp</item>
+        <item name="android:paddingEnd">32dp</item>
+        <item name="android:textColor">@color/frost_white</item>
+        <item name="android:textSize">15sp</item>
+        <item name="strokeColor">@color/frosted_border</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <!-- Day of week selector button -->
     <style name="DayBtn" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:layout_width">40dp</item>
         <item name="android:layout_height">40dp</item>
@@ -24,7 +53,9 @@
         <item name="android:textSize">11sp</item>
         <item name="android:backgroundTint">@color/day_btn_bg</item>
         <item name="android:textColor">@color/day_btn_text</item>
-        <item name="strokeColor">@android:color/transparent</item>
+        <item name="strokeColor">@color/frosted_border</item>
+        <item name="strokeWidth">1dp</item>
         <item name="cornerRadius">20dp</item>
+        <item name="elevation">0dp</item>
     </style>
 </resources>
