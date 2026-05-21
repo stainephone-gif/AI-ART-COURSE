@@ -1,58 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/bg"
-    android:padding="32dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvRingIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🌙"
-        android:textSize="72sp"
-        android:layout_marginBottom="16dp"/>
+    <!-- Full-bleed gradient background -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_ring_bg"/>
 
-    <TextView
-        android:id="@+id/tvTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="07:00"
-        android:textSize="80sp"
-        android:textColor="@color/white"
-        android:fontFamily="sans-serif-light"
-        android:letterSpacing="0.05"
-        android:layout_marginBottom="8dp"/>
+    <!-- Dark overlay for readability -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000"/>
 
-    <TextView
-        android:id="@+id/tvLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Будильник"
-        android:textSize="18sp"
-        android:textColor="@color/sub"
-        android:layout_marginBottom="48dp"/>
+    <!-- Content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="40dp">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnDismiss"
-        android:layout_width="240dp"
-        android:layout_height="56dp"
-        android:text="Выключить"
-        android:textSize="18sp"
-        app:backgroundTint="@color/accent"
-        android:layout_marginBottom="16dp"
-        xmlns:app="http://schemas.android.com/apk/res-auto"/>
+        <TextView
+            android:id="@+id/tvRingIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="◎"
+            android:textSize="54sp"
+            android:textColor="#AAFFFFFF"
+            android:fontFamily="sans-serif-thin"
+            android:layout_marginBottom="24dp"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSnooze"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Отложить на 10 мин"
-        android:textColor="@color/sub"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        xmlns:app="http://schemas.android.com/apk/res-auto"/>
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="07:00"
+            android:textSize="94sp"
+            android:textColor="@color/frost_white"
+            android:fontFamily="sans-serif-thin"
+            android:letterSpacing="-0.03"
+            android:lineHeight="88sp"
+            android:layout_marginBottom="12dp"/>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Будильник"
+            android:textSize="16sp"
+            android:textColor="#99FFFFFF"
+            android:fontFamily="sans-serif-light"
+            android:letterSpacing="0.05"
+            android:layout_marginBottom="56dp"/>
+
+        <!-- Dismiss — white pill -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDismiss"
+            android:layout_width="280dp"
+            android:layout_height="56dp"
+            android:text="Выключить"
+            android:textSize="16sp"
+            android:textColor="@color/midnight"
+            android:fontFamily="sans-serif"
+            app:backgroundTint="@color/frost_white"
+            app:cornerRadius="75dp"
+            app:elevation="0dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Snooze — ghost pill -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSnooze"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:text="Отложить на 10 мин"
+            android:textSize="14sp"
+            android:textColor="#99FFFFFF"
+            android:fontFamily="sans-serif-light"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="#33FFFFFF"
+            app:strokeWidth="1dp"
+            app:cornerRadius="75dp"
+            app:backgroundTint="@android:color/transparent"
+            app:elevation="0dp"/>
+    </LinearLayout>
+</FrameLayout>
